@@ -89,7 +89,7 @@ class Home extends StatelessWidget {
                                   BorderSide(color: Colors.transparent))),
                     )),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 Container(
                   width: 310,
