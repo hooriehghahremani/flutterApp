@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp( const MyApp());
+  runApp( const MyAPP());
 }
 class MyApp  extends StatelessWidget {
   const MyApp ({Key? key}) : super(key: key);
@@ -20,6 +20,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextEditingController _textcontroller = TextEditingController();
+    TextEditingController _passcontroller = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         title:const Text("Login Page"),
@@ -54,6 +55,7 @@ class Home extends StatelessWidget {
                       ),
                       controller: _textcontroller ,
                       decoration: const InputDecoration(
+                        icon: Icon(Icons.person),
                           hintText: "Username",
                           enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
@@ -76,8 +78,11 @@ class Home extends StatelessWidget {
                         style: const TextStyle(
                             fontSize: 20
                         ),
-                        controller: _textcontroller ,
+                        controller: _passcontroller ,
+                        obscureText: true,
                         decoration: const InputDecoration(
+                          icon: Icon(Icons.lock),
+                            prefixText: "pass:  ",
                             hintText: "Password" ,
                             enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -109,9 +114,10 @@ class Home extends StatelessWidget {
                         )
                         ),
                         onPressed: (){
-                          print("Text: ${_textcontroller.text}");
+                          print("User: ${_textcontroller.text}");
+                          print("Pass: ${_passcontroller.text}");
                         } ,
-                        child: const Text("click")),
+                        child: const Text("Login")),
                   )
 
                 ],
@@ -123,6 +129,55 @@ class Home extends StatelessWidget {
     );
   }
 }
+
+class MyAPP extends StatefulWidget {
+  const MyAPP({Key? key}) : super(key: key);
+
+  @override
+  State<MyAPP> createState() => _MyAPPState();
+}
+
+class _MyAPPState extends State<MyAPP> {
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: MyApp2()
+    );
+  }
+}
+
+
+class MyApp2 extends StatefulWidget {
+  const MyApp2({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp2> createState() => _MyApp2State();
+}
+
+class _MyApp2State extends State<MyApp2> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        width: 1000,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+           const Text("Count" , style: TextStyle(fontSize: 50),),
+            const SizedBox(height: 50),
+            ElevatedButton(
+                onPressed: (){},
+                child: const Text("+" , style: TextStyle(fontSize: 50),))
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
 
 
 
