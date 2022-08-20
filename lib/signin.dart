@@ -1,61 +1,67 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-import 'package:sample_app/main.dart';
 import 'package:sample_app/user_info_model.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+class SignIn extends StatelessWidget {
+  final UserInfo user;
 
-  @override
-  State<SignIn> createState() => _SignInState();
-}
+  SignIn({Key? key, required this.user}) : super(key: key);
 
-class _SignInState extends State<SignIn> {
-  final TextEditingController namecontroller = TextEditingController();
-  final TextEditingController passcontroller = TextEditingController();
-  final TextEditingController mailcontroller = TextEditingController();
-  late final UserInfo user;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:const Text("Login Page"),
-        backgroundColor: Colors.indigoAccent, //background color of app bar
+        title: Text("Welcome"),
+        backgroundColor: Colors.blueAccent,
       ),
-        body: SizedBox(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: SafeArea(
-              child: Column(
-                children: [
-                  const SizedBox(
+      body: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: SafeArea(
+            child: Column(
+          children: [
+            const SizedBox(
+              height: 200,
+              width: 400,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
                     width: 300,
-                    height: 200,
+                    height: 50,
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.blueAccent)),
+                    child:
+                        Text("${user.username} ", textAlign: TextAlign.center)),
+                const SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  width: 300,
+                  height: 50,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.blueAccent)),
+                  child: Text(
+                    "${user.mail}",
+                    textAlign: TextAlign.center,
                   ),
-                  Container(
-                      width: 300,
-                      padding: const EdgeInsets.symmetric(horizontal: 7 , vertical: 3),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.blueAccent)
-                      ),
-                      // crossAxisAlignment: CrossAxisAlignment.center,
-                      // mainAxisAlignment: MainAxisAlignment.center,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children:   [
-                          Text("${user.username} ${user.mail}")
-
-                ],
-                      )
-              ),
-  ]
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+              ],
             )
-        )
-    )
+          ],
+        )),
+      ),
     );
   }
-
 }
